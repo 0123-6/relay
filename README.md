@@ -16,6 +16,8 @@ Different sessions and agents use the same persistent information to recover goa
 
 No service to run, packages to install, or specific model required.
 
+Keep periodic snapshots or backups of `human-data/` outside that directory so you can recover if an agent accidentally changes or damages the memory.
+
 1. Download this project and open it with an agent that can read and write local files.
 2. Grant access to this directory and the projects you want it to work on.
 3. Give it a task:
