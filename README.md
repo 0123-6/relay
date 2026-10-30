@@ -6,7 +6,11 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-External working memory, maintained by AI agents.
+## Persistent Memory for AI Agents
+
+**Agents can be replaced. Your memory stays with you.**
+
+Mostly stateless agents. Persistent memory, managed by agents.
 
 Describe your goals, provide the necessary context, and decide what the agent may do. The agent carries out the work and maintains your background, tasks, decisions, and progress so the next session can pick up where you left off. The agent organizes and updates human-data; you do not have to maintain it manually.
 
