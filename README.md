@@ -84,6 +84,8 @@ Entry files apply within the workspace or directory scope defined by each tool. 
 | AGENTS.md, CLAUDE.md, GEMINI.md, etc. | Load the core according to each tool's conventions |
 | opencode.json, .aider.conf.yml | Load the core through native tool configuration |
 | [assets/logo.svg](assets/logo.svg) | Project icon: connected work nodes around a shared memory document |
+| [Star workflow](.github/workflows/star-history.yml) / [collector](scripts/update-star-history.py) | Automatically collect daily GitHub star totals and render the charts |
+| [Star records](data/star-history.json) / assets/star-history*.svg | Public daily samples and matching light/dark chart assets |
 | .gitignore | Excludes working memory, local credential files, and temporary files by default |
 
 ## Tool compatibility
@@ -138,3 +140,19 @@ Personal background, company information, and task records created during use be
 Results depend on the agent's capabilities, task scope, available context, and authorization. This project provides shared working instructions and portable memory. Background services, scheduling, and concurrency locks are left to the tools you use.
 
 Update relay.md to change shared behavior. Let the agent maintain preferences, project progress, and specific tasks in human-data. Update entry files when loading conventions change, keeping one shared core.
+
+## Star history
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg">
+  <img src="assets/star-history.svg" width="900" alt="Relay daily GitHub Star history, drawn in a sketch style">
+</picture>
+
+After publishing this project to GitHub, enable Actions and allow the **Star history** workflow to write to the default branch. It discovers the current repository automatically and uses GitHub's built-in token; no personal token, external service, or additional Python packages are needed.
+
+- The first push containing the workflow starts collection. Afterward it runs daily at **02:23 UTC** and can also be started from **Actions → Star history → Run workflow**.
+- Actual star totals are stored in [data/star-history.json](data/star-history.json). Rerunning on the same UTC day updates that day's sample. Totals can decrease when people unstar the project; missing days are not filled with invented values.
+- History starts when collection is enabled. A single sample appears as a point; a line appears after samples from multiple dates. The initial chart is an empty state with no fabricated growth.
+- GitHub schedules can be delayed, and public scheduled workflows may be disabled after 60 days without repository activity; see [GitHub's scheduling rules](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule). Branch rules must permit the workflow's commits.
+
+Only the public Star data and its two SVGs are committed by this workflow. Its schedule handles project statistics; it does not schedule your personal work or access human-data.

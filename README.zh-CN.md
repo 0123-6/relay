@@ -84,6 +84,8 @@ Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别
 | AGENTS.md、CLAUDE.md、GEMINI.md 等 | 按不同工具的规范加载核心文件 |
 | opencode.json、.aider.conf.yml | 通过工具原生配置直接加载核心文件 |
 | [assets/logo.svg](assets/logo.svg) | 项目图标：多个工作节点连接同一份记忆文档 |
+| [Star 工作流](.github/workflows/star-history.yml) / [采集脚本](scripts/update-star-history.py) | 自动采集每日 GitHub Star 总数并生成图表 |
+| [Star 记录](data/star-history.json) / assets/star-history*.svg | 公开的每日快照及对应的深浅主题图表 |
 | .gitignore | 默认排除实际工作记忆、本地凭据及临时文件 |
 
 ## 工具适配
@@ -138,3 +140,19 @@ AGENTS.md 的[官方生态清单](https://agents.md/)还列出了 Jules、Devin 
 执行效果取决于 Agent 能力、任务范围、资料和授权。本项目提供共同工作约定与可携带的工作记忆，不额外提供后台运行服务、定时调度或并发锁；这些能力由实际使用的工具承担。
 
 维护通用行为时修改 relay.md；个人偏好、项目进度和具体任务由 Agent 写入 human-data。工具入口只随各工具的加载规范更新，避免维护多份核心规则。
+
+## Star 历史
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg">
+  <img src="assets/star-history.svg" width="900" alt="Relay 每日 GitHub Star 历史，手绘风格折线图">
+</picture>
+
+发布到 GitHub 后，启用 Actions，并允许 **Star history** 工作流写入默认分支。它会自动识别当前仓库，使用 GitHub 自带令牌，无需个人令牌、额外服务或第三方 Python 依赖。
+
+- 包含工作流的首次推送会开始采集，之后每天 **UTC 02:23（北京时间 10:23）** 运行，也可通过 **Actions → Star history → Run workflow** 手动触发。
+- 真实 Star 总数保存在 [data/star-history.json](data/star-history.json)。同一 UTC 日期重复运行会更新当天快照；取消 Star 后总数可以下降，漏采日期不会补造数据。
+- 历史从启用采集时开始积累。只有一个日期时显示单个点，积累多个日期后显示折线；初始图表为空状态，不预填虚构增长。
+- GitHub 调度可能延迟，公开仓库长时间无活动时，定时工作流可能在 60 天后停用，详见 [GitHub 调度规则](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)。分支规则需要允许工作流提交。
+
+工作流只提交公开 Star 数据及两份 SVG；定时机制仅处理项目统计，不调度个人工作，也不读取 human-data。
