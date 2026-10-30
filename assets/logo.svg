@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="logo-title logo-description">
-  <title id="logo-title">Personal Work Hub</title>
+  <title id="logo-title">Relay</title>
   <desc id="logo-description">Four connected work nodes share a central document, representing persistent memory across agents and tasks.</desc>
   <defs>
     <linearGradient id="background" x1="12" y1="4" x2="116" y2="128" gradientUnits="userSpaceOnUse">

@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="assets/logo.svg" width="104" height="104" alt="Personal Work Hub logo">
+  <img src="assets/logo.svg" width="104" height="104" alt="Relay logo">
 </p>
 
-# Personal Work Hub
+# Relay
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-A personal work hub managed by your AI agent.
+A personal work hub managed by AI agents.
 
 Describe your goals, provide the necessary context, and decide what the agent may do. The agent carries out the work and maintains your background, tasks, decisions, and progress so the next session can pick up where you left off. The agent organizes and updates human-data; you do not have to maintain it manually.
 
-The project centers on a single [personal-work-hub.md](personal-work-hub.md). Tool-specific entry files load that core, while working memory lives in human-data. The project needs no service or package installation and does not require a particular model. Local version history uses Git, which the agent checks before use.
+The project centers on a single [relay.md](relay.md). Tool-specific entry files load that core, while working memory lives in human-data. The project needs no service or package installation and does not require a particular model. Local version history uses Git, which the agent checks before use.
 
 ## Getting started
 
@@ -21,7 +21,7 @@ The project centers on a single [personal-work-hub.md](personal-work-hub.md). To
 For a first session, you can say:
 
 ```text
-Read personal-work-hub.md in this directory, then restore or initialize human-data.
+Read relay.md in this directory, then restore or initialize human-data.
 Follow those instructions to carry out my task and maintain working memory as you go.
 My task is: …
 ```
@@ -68,7 +68,7 @@ If you start the agent elsewhere, provide the hub's actual path and grant the pe
 
 ```text
 My personal work hub is at <the actual absolute path to this hub>.
-Read its personal-work-hub.md and human-data to restore the task context first.
+Read its relay.md and human-data to restore the task context first.
 The project for this task is at <the actual absolute path to the target project>.
 ```
 
@@ -78,7 +78,7 @@ Entry files apply within the workspace or directory scope defined by each tool. 
 
 | File or directory | Purpose |
 | --- | --- |
-| [personal-work-hub.md](personal-work-hub.md) | The single shared set of agent instructions |
+| [relay.md](relay.md) | The single shared set of agent instructions |
 | README.md / [README.zh-CN.md](README.zh-CN.md) | Human-facing introduction, setup, and compatibility notes |
 | human-data/ | Agent-managed working memory; an independent local Git repository is created on first real use |
 | AGENTS.md, CLAUDE.md, GEMINI.md, etc. | Load the core according to each tool's conventions |
@@ -93,14 +93,14 @@ The table is based on official documentation reviewed on 2026-10-30. Entry files
 | Tool | Entry provided | Loading behavior and limitations | Official reference |
 | --- | --- | --- | --- |
 | OpenAI Codex | `AGENTS.md` | A read instruction loads the core after entry discovery; instruction scope and actual permissions apply | [OpenAI Docs](https://learn.chatgpt.com/docs/agent-configuration/agents-md) |
-| Claude Code | `CLAUDE.md` | Native `@./personal-work-hub.md` import; does not rely on AGENTS version or fallback behavior | [Memory](https://code.claude.com/docs/en/memory) |
-| Gemini CLI | `GEMINI.md` | Native `@./personal-work-hub.md` import | [Context files](https://geminicli.com/docs/cli/gemini-md/) |
-| Qwen Code | `QWEN.md` | `@./personal-work-hub.md` reference; newer versions may also load AGENTS | [Memory](https://qwenlm.github.io/qwen-code-docs/en/users/features/memory/) |
+| Claude Code | `CLAUDE.md` | Native `@./relay.md` import; does not rely on AGENTS version or fallback behavior | [Memory](https://code.claude.com/docs/en/memory) |
+| Gemini CLI | `GEMINI.md` | Native `@./relay.md` import | [Context files](https://geminicli.com/docs/cli/gemini-md/) |
+| Qwen Code | `QWEN.md` | `@./relay.md` reference; newer versions may also load AGENTS | [Memory](https://qwenlm.github.io/qwen-code-docs/en/users/features/memory/) |
 | GitHub Copilot | `.github/copilot-instructions.md`, `AGENTS.md` | A read instruction loads the core; instruction support and file access vary across clients, agents, and code review | [Custom instructions](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions) |
 | Cursor | `AGENTS.md` | Project instructions direct the agent to read the core | [Rules](https://cursor.com/docs/rules) |
-| Cline | `AGENTS.md`, `.clinerules/personal-work-hub.md` | Standard entry and native rule; confirm they are enabled in the Rules panel; duplicate entries should not repeat initialization | [Cline Rules](https://github.com/cline/cline/blob/main/docs/customization/cline-rules.mdx) |
-| Roo Code | `.roo/rules/personal-work-hub.md` | Native workspace rule; AGENTS support depends on settings | [Custom instructions](https://github.com/RooCodeInc/Roo-Code/blob/main/apps/docs/docs/features/custom-instructions.md) |
-| Continue | `.continue/rules/personal-work-hub.md` | `alwaysApply: true`; requires an agent mode with file access; autocomplete does not include these rules | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
+| Cline | `AGENTS.md`, `.clinerules/relay.md` | Standard entry and native rule; confirm they are enabled in the Rules panel; duplicate entries should not repeat initialization | [Cline Rules](https://github.com/cline/cline/blob/main/docs/customization/cline-rules.mdx) |
+| Roo Code | `.roo/rules/relay.md` | Native workspace rule; AGENTS support depends on settings | [Custom instructions](https://github.com/RooCodeInc/Roo-Code/blob/main/apps/docs/docs/features/custom-instructions.md) |
+| Continue | `.continue/rules/relay.md` | `alwaysApply: true`; requires an agent mode with file access; autocomplete does not include these rules | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
 | TRAE | `.trae/rules/project_rules.md` | Provides a project rule with alwaysApply; the full official rules page could not be retrieved, so the filename follows the official article; current directory and activation behavior still need testing | [Rules](https://docs.trae.ai/ide/rules), [Official article](https://www.trae.ai/blog/trae_tutorial_0825) |
 | OpenCode | `opencode.json`, `AGENTS.md` | Native `instructions` loading, with AGENTS as a shared entry | [Rules](https://opencode.ai/docs/rules/) |
 | Aider | `.aider.conf.yml` | Native `read` loading; local automatic commits are enabled; the agent versions the independent memory repository according to the core | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
@@ -110,7 +110,7 @@ The table is based on official documentation reviewed on 2026-10-30. Entry files
 | Qoder IDE | `AGENTS.md` | Officially recognized automatically; existing native rules may override conflicting instructions | [Rules](https://docs.qoder.com/user-guide/rules) |
 | Zed built-in agent | `AGENTS.md` | Project instructions; external agents running inside Zed follow their own loading rules | [Instructions](https://zed.dev/docs/ai/instructions) |
 | Warp | `AGENTS.md` | Project rules; confirm the relevant context feature is enabled | [Project rules](https://docs.warp.dev/knowledge-and-collaboration/warp-drive/ai-objects/) |
-| goose | `.goosehints` | Native `@personal-work-hub.md` inclusion; requires the Developer extension | [Hints](https://goose-docs.ai/docs/guides/context-engineering/using-goosehints/) |
+| goose | `.goosehints` | Native `@relay.md` inclusion; requires the Developer extension | [Hints](https://goose-docs.ai/docs/guides/context-engineering/using-goosehints/) |
 | Factory Droid | `AGENTS.md` | Persistent project instructions direct the agent to read the core | [AGENTS.md](https://docs.factory.com/harness/agents-md) |
 
 The [official AGENTS.md ecosystem list](https://agents.md/) also includes Jules and Devin. Windsurf's former official entry page redirected to Devin documentation that could not be retrieved, so no unverified new paths have been added. These tools currently receive the shared AGENTS.md entry; version-specific behavior, loading precedence, and memory write-back still need verification. Ecosystem listing alone is not a completed compatibility check.
@@ -137,4 +137,4 @@ Personal background, company information, and task records created during use be
 
 Results depend on the agent's capabilities, task scope, available context, and authorization. This project provides shared working instructions and portable memory. Background services, scheduling, and concurrency locks are left to the tools you use.
 
-Update personal-work-hub.md to change shared behavior. Let the agent maintain preferences, project progress, and specific tasks in human-data. Update entry files when loading conventions change, keeping one shared core.
+Update relay.md to change shared behavior. Let the agent maintain preferences, project progress, and specific tasks in human-data. Update entry files when loading conventions change, keeping one shared core.

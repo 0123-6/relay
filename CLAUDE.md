@@ -1,3 +1,3 @@
-# Personal Work Hub entry
+# Relay entry
 
-@./personal-work-hub.md
+@./relay.md

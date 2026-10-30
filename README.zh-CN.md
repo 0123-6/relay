@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.svg" width="104" height="104" alt="Personal Work Hub 图标">
+  <img src="assets/logo.svg" width="104" height="104" alt="Relay 图标">
 </p>
 
-# Personal Work Hub
+# Relay
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
@@ -10,7 +10,7 @@
 
 你描述目标、提供必要信息并决定授权范围。Agent 执行工作，自行保存背景、任务、决策与进度，让下一次会话能够继续接手。human-data 的整理、索引和更新由 Agent 负责，无需你手工维护。
 
-项目的核心是一份 [personal-work-hub.md](personal-work-hub.md)，工具入口负责加载它，实际工作记忆保存在 human-data。项目无需启动服务、安装依赖包或指定模型；本地版本追溯使用 Git，由 Agent 在使用前检查。
+项目的核心是一份 [relay.md](relay.md)，工具入口负责加载它，实际工作记忆保存在 human-data。项目无需启动服务、安装依赖包或指定模型；本地版本追溯使用 Git，由 Agent 在使用前检查。
 
 ## 开始使用
 
@@ -21,7 +21,7 @@
 一次启动可以这样说：
 
 ```text
-请先读取当前目录的 personal-work-hub.md，恢复或初始化 human-data。
+请先读取当前目录的 relay.md，恢复或初始化 human-data。
 接下来按其中约定推进我的任务，并主动维护工作记忆。
 我的任务是：……
 ```
@@ -68,7 +68,7 @@ Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别
 
 ```text
 我的个人工作中枢位于 <本中枢的实际绝对路径>。
-请先读取该目录的 personal-work-hub.md 和 human-data，恢复当前任务上下文。
+请先读取该目录的 relay.md 和 human-data，恢复当前任务上下文。
 这次工作的目标工程位于 <目标工程的实际绝对路径>。
 ```
 
@@ -78,7 +78,7 @@ Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别
 
 | 文件或目录 | 用途 |
 | --- | --- |
-| [personal-work-hub.md](personal-work-hub.md) | Agent 的唯一核心通用约定 |
+| [relay.md](relay.md) | Agent 的唯一核心通用约定 |
 | README.md | 给使用者看的介绍、启动方式和兼容说明 |
 | human-data/ | Agent 自主管理的工作记忆，首次实际使用时建立独立本地 Git 仓库 |
 | AGENTS.md、CLAUDE.md、GEMINI.md 等 | 按不同工具的规范加载核心文件 |
@@ -93,14 +93,14 @@ Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别
 | 工具 | 本项目提供的入口 | 加载方式与限制 | 官方依据 |
 | --- | --- | --- | --- |
 | OpenAI Codex | `AGENTS.md` | 发现入口后按指令读取核心；受指令发现范围和实际权限约束 | [OpenAI Docs](https://learn.chatgpt.com/docs/agent-configuration/agents-md) |
-| Claude Code | `CLAUDE.md` | 使用 `@./personal-work-hub.md` 原生导入，避免依赖 AGENTS 的版本及回退规则 | [Memory](https://code.claude.com/docs/en/memory) |
-| Gemini CLI | `GEMINI.md` | 使用 `@./personal-work-hub.md` 原生导入 | [Context files](https://geminicli.com/docs/cli/gemini-md/) |
-| Qwen Code | `QWEN.md` | 使用 `@./personal-work-hub.md` 文件引用；新版本也可能同时加载 AGENTS | [Memory](https://qwenlm.github.io/qwen-code-docs/en/users/features/memory/) |
+| Claude Code | `CLAUDE.md` | 使用 `@./relay.md` 原生导入，避免依赖 AGENTS 的版本及回退规则 | [Memory](https://code.claude.com/docs/en/memory) |
+| Gemini CLI | `GEMINI.md` | 使用 `@./relay.md` 原生导入 | [Context files](https://geminicli.com/docs/cli/gemini-md/) |
+| Qwen Code | `QWEN.md` | 使用 `@./relay.md` 文件引用；新版本也可能同时加载 AGENTS | [Memory](https://qwenlm.github.io/qwen-code-docs/en/users/features/memory/) |
 | GitHub Copilot | `.github/copilot-instructions.md`、`AGENTS.md` | 按指令读取核心；各客户端、Agent 与代码审查的指令支持和文件读取能力不同 | [Custom instructions](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions) |
 | Cursor | `AGENTS.md` | 项目级入口，按指令读取核心 | [Rules](https://cursor.com/docs/rules) |
-| Cline | `AGENTS.md`、`.clinerules/personal-work-hub.md` | 提供标准入口及原生规则；在 Rules 面板确认已启用，重复入口不重复执行初始化 | [Cline Rules](https://github.com/cline/cline/blob/main/docs/customization/cline-rules.mdx) |
-| Roo Code | `.roo/rules/personal-work-hub.md` | 使用原生工作区规则；AGENTS 支持受设置影响 | [Custom instructions](https://github.com/RooCodeInc/Roo-Code/blob/main/apps/docs/docs/features/custom-instructions.md) |
-| Continue | `.continue/rules/personal-work-hub.md` | `alwaysApply: true`；需要可读取文件的 Agent 模式，自动补全不包含这些规则 | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
+| Cline | `AGENTS.md`、`.clinerules/relay.md` | 提供标准入口及原生规则；在 Rules 面板确认已启用，重复入口不重复执行初始化 | [Cline Rules](https://github.com/cline/cline/blob/main/docs/customization/cline-rules.mdx) |
+| Roo Code | `.roo/rules/relay.md` | 使用原生工作区规则；AGENTS 支持受设置影响 | [Custom instructions](https://github.com/RooCodeInc/Roo-Code/blob/main/apps/docs/docs/features/custom-instructions.md) |
+| Continue | `.continue/rules/relay.md` | `alwaysApply: true`；需要可读取文件的 Agent 模式，自动补全不包含这些规则 | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
 | TRAE | `.trae/rules/project_rules.md` | 提供项目规则并声明 alwaysApply；官方规则页正文未能完整读取，文件名参照官方文章，当前版本目录与激活方式仍需实测确认 | [Rules](https://docs.trae.ai/ide/rules)、[官方文章](https://www.trae.ai/blog/trae_tutorial_0825) |
 | OpenCode | `opencode.json`、`AGENTS.md` | `instructions` 原生加载核心；AGENTS 同时作为共享入口 | [Rules](https://opencode.ai/docs/rules/) |
 | Aider | `.aider.conf.yml` | `read` 原生加载核心；启用本地自动提交，独立记忆仓库由 Agent 按核心约定管理 | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
@@ -110,7 +110,7 @@ Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别
 | Qoder IDE | `AGENTS.md` | 官方声明自动识别；既有原生规则可能覆盖同项约定 | [Rules](https://docs.qoder.com/user-guide/rules) |
 | Zed 内置 Agent | `AGENTS.md` | 使用项目指令；在 Zed 中运行的外部 Agent 仍遵循其自己的加载规则 | [Instructions](https://zed.dev/docs/ai/instructions) |
 | Warp | `AGENTS.md` | 项目规则；确认相应上下文功能已启用 | [Project rules](https://docs.warp.dev/knowledge-and-collaboration/warp-drive/ai-objects/) |
-| goose | `.goosehints` | 使用 `@personal-work-hub.md` 原生包含文件；需要启用 Developer 扩展 | [Hints](https://goose-docs.ai/docs/guides/context-engineering/using-goosehints/) |
+| goose | `.goosehints` | 使用 `@relay.md` 原生包含文件；需要启用 Developer 扩展 | [Hints](https://goose-docs.ai/docs/guides/context-engineering/using-goosehints/) |
 | Factory Droid | `AGENTS.md` | 使用持久项目指令，按入口要求读取核心 | [AGENTS.md](https://docs.factory.com/harness/agents-md) |
 
 AGENTS.md 的[官方生态清单](https://agents.md/)还列出了 Jules、Devin 等工具。Windsurf 的原官方入口页本次跳转到无法读取的 Devin 文档，因此没有添加未经核实的新路径。这些工具暂提供共享 AGENTS.md 入口，具体版本、加载优先级和记忆写回仍待核实，不将生态收录等同于完整适配验收。
@@ -137,4 +137,4 @@ AGENTS.md 的[官方生态清单](https://agents.md/)还列出了 Jules、Devin 
 
 执行效果取决于 Agent 能力、任务范围、资料和授权。本项目提供共同工作约定与可携带的工作记忆，不额外提供后台运行服务、定时调度或并发锁；这些能力由实际使用的工具承担。
 
-维护通用行为时修改 personal-work-hub.md；个人偏好、项目进度和具体任务由 Agent 写入 human-data。工具入口只随各工具的加载规范更新，避免维护多份核心规则。
+维护通用行为时修改 relay.md；个人偏好、项目进度和具体任务由 Agent 写入 human-data。工具入口只随各工具的加载规范更新，避免维护多份核心规则。

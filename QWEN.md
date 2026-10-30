@@ -1,3 +1,3 @@
-# Personal Work Hub entry
+# Relay entry
 
-Read and follow @./personal-work-hub.md before handling a task.
+Read and follow @./relay.md before handling a task.
