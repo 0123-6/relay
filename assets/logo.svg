@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="logo-title logo-description">
+  <title id="logo-title">Personal Work Hub</title>
+  <desc id="logo-description">Four connected work nodes share a central document, representing persistent memory across agents and tasks.</desc>
+  <defs>
+    <linearGradient id="background" x1="12" y1="4" x2="116" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172B43"/>
+      <stop offset="1" stop-color="#0A1525"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="24" y1="24" x2="104" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8EF0D4"/>
+      <stop offset="1" stop-color="#40CFAC"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="124" height="124" rx="30" fill="url(#background)"/>
+  <rect x="2.5" y="2.5" width="123" height="123" rx="29.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <g fill="none" stroke="#77B6C3" stroke-width="5" stroke-linecap="round">
+    <path d="M38 38 51 51M77 51 90 38M38 90 51 77M77 77 90 90"/>
+  </g>
+  <rect x="22" y="22" width="22" height="22" rx="7" fill="url(#mint)"/>
+  <rect x="84" y="22" width="22" height="22" rx="7" fill="#9CB9F6"/>
+  <rect x="22" y="84" width="22" height="22" rx="7" fill="#9CB9F6"/>
+  <rect x="84" y="84" width="22" height="22" rx="7" fill="url(#mint)"/>
+  <rect x="43" y="46" width="42" height="42" rx="13" fill="#040C16" fill-opacity="0.25"/>
+  <rect x="43" y="43" width="42" height="42" rx="13" fill="#F2FAFB"/>
+  <g fill="none" stroke="#153248" stroke-width="4" stroke-linecap="round">
+    <path d="M55 56H73M55 64H73M55 72H65"/>
+  </g>
+</svg>

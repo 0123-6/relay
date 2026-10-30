@@ -1,0 +1,21 @@
+# Personal working memory stays local; keep the empty directory in the template.
+/human-data/*
+!/human-data/.gitkeep
+
+# Local credentials and machine-specific configuration.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v*/
+
+# Editor and desktop temporary files.
+Desktop.ini
+*.swp
+*.swo
+*~
