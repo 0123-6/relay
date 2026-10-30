@@ -6,11 +6,19 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-A personal work hub managed by AI agents.
+External working memory, maintained by AI agents.
 
 Describe your goals, provide the necessary context, and decide what the agent may do. The agent carries out the work and maintains your background, tasks, decisions, and progress so the next session can pick up where you left off. The agent organizes and updates human-data; you do not have to maintain it manually.
 
-The project centers on a single [relay.md](relay.md). Tool-specific entry files load that core, while working memory lives in human-data. The project needs no service or package installation and does not require a particular model. Local version history uses Git, which the agent checks before use.
+Shared behavior is defined in a single [relay.md](relay.md). Tool-specific entry files load it; human-data holds the accumulated working memory. The project needs no service or package installation and does not require a particular model. Local version history uses Git, which the agent checks before use.
+
+## A mostly stateless agent
+
+Relay treats the agent as a mostly stateless, replaceable executor. human-data is the single authoritative home for persistent working memory and task state, carrying almost all work-related memory. The current conversation is a temporary working context, and a tool's private memory can assist. Work continuity should come from the external records.
+
+The agent continuously records information, decisions and their basis, progress, and unfinished work as it works. It can search, reread, and organize the authorized memory whenever needed; you do not have to maintain it or approve each routine lookup. Keeping something in the current chat is not a reason to leave it unwritten.
+
+The intended handover is that a new agent, without the old chat history, can recover the goal, constraints, work state, and next step from the shared core, human-data, and the referenced material it has permission to access. The agent chooses how to organize and retrieve that information. This does not require saving every token or transient step; it is a working discipline, not a guarantee of complete lossless recovery.
 
 ## Getting started
 
@@ -32,7 +40,7 @@ Initially, human-data contains only a `.gitkeep` placeholder. The agent creates 
 
 ## Everyday use
 
-Give the agent tasks, requirements, and feedback as you normally would. It should proactively record goals, important confirmations, verification results, and unfinished work in human-data.
+Give the agent tasks, requirements, and feedback as you normally would. It should keep its working memory and task state in human-data throughout the work, including goals, confirmations, decisions and their basis, progress, verification results, and unfinished work.
 
 When you switch sessions or agents, have the new agent read the same core and working memory. You only need to supply missing information when it affects correctness, scope, or authorization.
 
