@@ -10,7 +10,7 @@ A personal work hub managed by your AI agent.
 
 Describe your goals, provide the necessary context, and decide what the agent may do. The agent carries out the work and maintains your background, tasks, decisions, and progress so the next session can pick up where you left off. The agent organizes and updates human-data; you do not have to maintain it manually.
 
-The project centers on a single [personal-work-hub.md](personal-work-hub.md). Tool-specific entry files load that core, while working memory lives in human-data. The project has no runtime, third-party dependencies, or required model.
+The project centers on a single [personal-work-hub.md](personal-work-hub.md). Tool-specific entry files load that core, while working memory lives in human-data. The project needs no service or package installation and does not require a particular model. Local version history uses Git, which the agent checks before use.
 
 ## Getting started
 
@@ -43,6 +43,23 @@ The following is an intended workflow example, not a completed performance test:
 3. In a new session, you say, “Continue the previous task.”
 4. The new agent finds the project location, current status, and next step in human-data, checks the current code, and continues.
 
+## Versioning working memory
+
+The core authorizes routine local Git operations within the hub, including initialization, status and diff checks, history inspection, staging, and commits. The agent does not need to ask before each operation. Git permissions for other projects still follow their own agreements. Remote configuration, pushing, publishing, rewriting history, and discarding changes require the appropriate authorization.
+
+When you first use the hub for real work, the agent creates an independent local Git repository inside human-data. It records meaningful changes after initial setup, important decisions, task milestones, organization, and handover. You do not have to initialize it or commit memory manually. Maintaining or reviewing the public template leaves its memory placeholder empty.
+
+The two repositories serve separate purposes:
+
+- The project repository stores shared instructions, entry files, documentation, and the icon. Its ignore rules continue to exclude private memory.
+- The independent human-data repository stores memory history. It starts with no remote; it is not added to the project as a submodule. Its own ignore rules exclude credentials and temporary files.
+
+The agent checks that the memory repository's actual root is human-data. Discovering the parent repository is not sufficient. Memory commands explicitly use `git -C <absolute path to human-data>` so commits go to the intended repository.
+
+Existing memory repositories retain their history, branch, and configuration. Unrelated pending or staged work is left intact. If Git, a configured identity, or permissions are missing, the agent keeps the written records and reports that versioning is not yet complete. No empty commits are needed when nothing changed.
+
+History supports traceability; the agent still maintains a concise current index, summaries, and useful archives. Native automatic commits in a tool apply only to the repository it manages; the agent must also verify that memory changes were committed in the independent repository.
+
 ## Working across projects
 
 One hub can serve several independent projects. Source code stays in each project's directory; background, decisions, and handover information stay in this hub's human-data.
@@ -63,7 +80,7 @@ Entry files apply within the workspace or directory scope defined by each tool. 
 | --- | --- |
 | [personal-work-hub.md](personal-work-hub.md) | The single shared set of agent instructions |
 | README.md / [README.zh-CN.md](README.zh-CN.md) | Human-facing introduction, setup, and compatibility notes |
-| human-data/ | Working memory managed by the agent; initially empty |
+| human-data/ | Agent-managed working memory; an independent local Git repository is created on first real use |
 | AGENTS.md, CLAUDE.md, GEMINI.md, etc. | Load the core according to each tool's conventions |
 | opencode.json, .aider.conf.yml | Load the core through native tool configuration |
 | [assets/logo.svg](assets/logo.svg) | Project icon: connected work nodes around a shared memory document |
@@ -86,7 +103,7 @@ The table is based on official documentation reviewed on 2026-10-30. Entry files
 | Continue | `.continue/rules/personal-work-hub.md` | `alwaysApply: true`; requires an agent mode with file access; autocomplete does not include these rules | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
 | TRAE | `.trae/rules/project_rules.md` | Provides a project rule with alwaysApply; the full official rules page could not be retrieved, so the filename follows the official article; current directory and activation behavior still need testing | [Rules](https://docs.trae.ai/ide/rules), [Official article](https://www.trae.ai/blog/trae_tutorial_0825) |
 | OpenCode | `opencode.json`, `AGENTS.md` | Native `instructions` loading, with AGENTS as a shared entry | [Rules](https://opencode.ai/docs/rules/) |
-| Aider | `.aider.conf.yml` | Native `read` loading; automatic commits are disabled and Git operations still require the appropriate authorization | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
+| Aider | `.aider.conf.yml` | Native `read` loading; local automatic commits are enabled; the agent versions the independent memory repository according to the core | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
 | Kiro | `AGENTS.md` | Standard entry; custom agents may require explicit resources configuration | [Steering](https://kiro.dev/docs/steering/) |
 | JetBrains Junie | `AGENTS.md`, `.junie/guidelines.md` | Standard entry with a legacy guidelines fallback; a custom Guidelines path can change discovery | [Guidelines](https://junie.jetbrains.com/docs/guidelines-and-memory.html) |
 | Google Antigravity | `AGENTS.md`, `GEMINI.md` | Uses supported workspace entries; confirm the loading source for the specific product surface | [Rules](https://antigravity.google/docs/rules/) |
@@ -112,7 +129,7 @@ Completing these steps confirms reading and write-back for that tool in your env
 
 ## Personal data and the public template
 
-The default `.gitignore` excludes actual content in human-data and retains only `.gitkeep`. It does not encrypt local files or remove previously committed history. Before publishing, check that the repository contains only the template files you intend to share.
+The project-level `.gitignore` excludes actual content in human-data, including its independent Git metadata, and retains only `.gitkeep`. Memory history stays in the independent local repository. Ignore rules do not encrypt files or remove previously committed history. Before publishing, check that the project repository contains only the template files you intend to share.
 
 Personal background, company information, and task records created during use belong in your private working copy. The agent still needs permission to read those ignored files. If a tool also blocks file access based on ignore rules, allow this directory in that tool separately.
 

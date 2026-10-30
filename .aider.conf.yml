@@ -1,4 +1,4 @@
 read:
   - personal-work-hub.md
-auto-commits: false
+auto-commits: true
 dirty-commits: false

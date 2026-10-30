@@ -10,7 +10,7 @@
 
 你描述目标、提供必要信息并决定授权范围。Agent 执行工作，自行保存背景、任务、决策与进度，让下一次会话能够继续接手。human-data 的整理、索引和更新由 Agent 负责，无需你手工维护。
 
-项目的核心是一份 [personal-work-hub.md](personal-work-hub.md)，工具入口负责加载它，实际工作记忆保存在 human-data。没有运行时、第三方依赖或指定模型。
+项目的核心是一份 [personal-work-hub.md](personal-work-hub.md)，工具入口负责加载它，实际工作记忆保存在 human-data。项目无需启动服务、安装依赖包或指定模型；本地版本追溯使用 Git，由 Agent 在使用前检查。
 
 ## 开始使用
 
@@ -43,6 +43,23 @@ human-data 初始只有 `.gitkeep` 占位文件。目录分类、记录格式与
 3. 新会话中你说“继续上次的任务”。
 4. 新 Agent 从 human-data 找到工程位置、最新状态和下一步，重新核实当前代码后继续工作。
 
+## 工作记忆的版本管理
+
+核心约定允许 Agent 在本中枢内自主执行日常本地 Git 操作，包括初始化、检查状态与差异、查阅历史、暂存和提交，无需逐次询问。其他工程的 Git 操作仍遵循各自约定；配置远端、推送、发布、重写历史和丢弃改动需要相应授权。
+
+首次用中枢处理真实任务时，Agent 在 human-data 内建立独立的本地 Git 仓库，在首次记录、重要决策、任务阶段、资料整理和交接后保存有意义的变更。你无需手动初始化或提交记忆。维护或审查公开模板时，记忆目录保持空占位。
+
+两个仓库各有职责：
+
+- 项目仓库保存通用规则、工具入口、说明和图标，继续通过忽略规则排除私人记忆。
+- human-data 独立仓库保存记忆历史，默认不配置远端，也不作为项目的子模块；它自己的忽略规则排除凭据及临时文件。
+
+Agent 会核对记忆仓库的实际根目录就是 human-data，不能把识别到上层项目仓库当成已完成初始化。记忆操作明确使用 `git -C <human-data 的绝对路径>`，确保提交进入正确仓库。
+
+已有记忆仓库保留原有历史、分支和配置，其他人的未提交或暂存改动保持原样。如果 Git、提交身份或权限缺失，Agent 先保留已写入的记忆，并明确版本追溯尚未完成；没有变更时不创建空提交。
+
+历史负责追溯，Agent 仍需维护简明的当前索引、摘要和必要归档。工具原生自动提交只覆盖它实际管理的仓库，Agent 还需核对记忆变更是否已在独立仓库提交。
+
 ## 在其他工程中工作
 
 本中枢可以服务多个独立工程。工程源码留在原工程目录，背景、决策和交接信息集中保存在本中枢的 human-data。
@@ -63,7 +80,7 @@ human-data 初始只有 `.gitkeep` 占位文件。目录分类、记录格式与
 | --- | --- |
 | [personal-work-hub.md](personal-work-hub.md) | Agent 的唯一核心通用约定 |
 | README.md | 给使用者看的介绍、启动方式和兼容说明 |
-| human-data/ | Agent 自主管理的个人与任务工作记忆，初始为空 |
+| human-data/ | Agent 自主管理的工作记忆，首次实际使用时建立独立本地 Git 仓库 |
 | AGENTS.md、CLAUDE.md、GEMINI.md 等 | 按不同工具的规范加载核心文件 |
 | opencode.json、.aider.conf.yml | 通过工具原生配置直接加载核心文件 |
 | [assets/logo.svg](assets/logo.svg) | 项目图标：多个工作节点连接同一份记忆文档 |
@@ -86,7 +103,7 @@ human-data 初始只有 `.gitkeep` 占位文件。目录分类、记录格式与
 | Continue | `.continue/rules/personal-work-hub.md` | `alwaysApply: true`；需要可读取文件的 Agent 模式，自动补全不包含这些规则 | [Rules](https://docs.continue.dev/customize/deep-dives/rules) |
 | TRAE | `.trae/rules/project_rules.md` | 提供项目规则并声明 alwaysApply；官方规则页正文未能完整读取，文件名参照官方文章，当前版本目录与激活方式仍需实测确认 | [Rules](https://docs.trae.ai/ide/rules)、[官方文章](https://www.trae.ai/blog/trae_tutorial_0825) |
 | OpenCode | `opencode.json`、`AGENTS.md` | `instructions` 原生加载核心；AGENTS 同时作为共享入口 | [Rules](https://opencode.ai/docs/rules/) |
-| Aider | `.aider.conf.yml` | `read` 原生加载核心；关闭自动提交，Git 操作仍按实际授权执行 | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
+| Aider | `.aider.conf.yml` | `read` 原生加载核心；启用本地自动提交，独立记忆仓库由 Agent 按核心约定管理 | [YAML config](https://aider.chat/docs/config/aider_conf.html) |
 | Kiro | `AGENTS.md` | 标准入口；自定义 Agent 可能需显式配置 resources | [Steering](https://kiro.dev/docs/steering/) |
 | JetBrains Junie | `AGENTS.md`、`.junie/guidelines.md` | 标准入口加旧版 guidelines 回退；自定义 Guidelines path 可能改变加载来源 | [Guidelines](https://junie.jetbrains.com/docs/guidelines-and-memory.html) |
 | Google Antigravity | `AGENTS.md`、`GEMINI.md` | 使用工具支持的工作区入口；需要确认具体产品形态的加载来源 | [Rules](https://antigravity.google/docs/rules/) |
@@ -112,7 +129,7 @@ AGENTS.md 的[官方生态清单](https://agents.md/)还列出了 Jules、Devin 
 
 ## 个人资料与公开模板
 
-默认 `.gitignore` 排除 human-data 内的实际资料，仅保留 `.gitkeep`。这不会加密本地文件，也不会移除已经提交的历史内容；公开前应确认仓库里只保留准备分享的模板文件。
+项目级 `.gitignore` 排除 human-data 内的实际资料及其独立 Git 元数据，仅保留 `.gitkeep`；记忆历史保存在独立本地仓库。忽略规则不会加密文件，也不会移除已经提交的历史内容；公开前应确认项目仓库里只保留准备分享的模板文件。
 
 本项目使用后产生的个人背景、公司资料和任务记录，留在你的私有工作副本。Agent 仍需获准读取这些被版本控制忽略的文件；如果某个工具还按忽略规则屏蔽文件读取，需要在该工具中单独允许本目录。
 
