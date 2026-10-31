@@ -41,12 +41,3 @@ On first real use, the agent creates an independent local Git repository inside 
 ## Current limits
 
 Relay provides working instructions and shared files. It has no concurrency locks, task scheduler, or cross-device sync. Agents modifying the same files need coordination. Recovery depends on the agent's capabilities and permissions; complete lossless recovery and fresh-session behavior in every tool have not been verified.
-
-## Star history
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg">
-  <img src="assets/star-history.svg" width="900" alt="Relay daily GitHub Star history, drawn in a sketch style">
-</picture>
-
-The [GitHub Actions workflow](.github/workflows/star-history.yml) records actual daily star totals and draws this chart. For your own repository, enable Actions and allow workflow commits. Collection starts when enabled; past values are not reconstructed. Only public statistics are collected, not private memory.

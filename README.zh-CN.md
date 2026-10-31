@@ -41,12 +41,3 @@ Relay 将 Agent 视为近乎无状态的执行者。人提供的信息、Agent �
 ## 当前边界
 
 Relay 提供工作约定与共享文件，不提供并发锁、任务调度或跨设备同步。同文件并发修改需要协调。恢复效果取决于 Agent 能力与权限，尚未验证完全无损恢复或所有工具的新会话效果。
-
-## Star 历史
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg">
-  <img src="assets/star-history.svg" width="900" alt="Relay 每日 GitHub Star 历史，手绘风格折线图">
-</picture>
-
-[GitHub Actions 工作流](.github/workflows/star-history.yml)每天记录真实 Star 数并绘图。用于自己的仓库时，启用 Actions 并允许工作流提交即可。历史从启用时积累，不补造过去数据；仅采集公开统计，不读取私人记忆。
