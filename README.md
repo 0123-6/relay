@@ -10,7 +10,11 @@
 
 Relay treats agents as mostly stateless executors. Information from people, information produced by agents, and task state live together on disk in `human-data/`, where AI organizes, maintains, and reads them autonomously.
 
+You provide goals, necessary information, and authorization. Agents work autonomously within that scope and maintain working memory as they go. One hub can cover multiple projects, as well as learning, planning, and other day-to-day tasks.
+
 Different sessions and agents use the same persistent information to recover goals, context, working methods, and progress. You do not have to explain everything from scratch. Multiple agents can work from this shared source.
+
+Judge memory management by whether the next agent can accurately recover context and continue the work, with less repeated explanation and upkeep from you.
 
 ## Background
 
