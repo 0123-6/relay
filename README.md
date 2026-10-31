@@ -41,3 +41,7 @@ On first real use, the agent creates an independent local Git repository inside 
 ## Current limits
 
 Relay provides working instructions and shared files. It has no concurrency locks, task scheduler, or cross-device sync. Agents modifying the same files need coordination. Recovery depends on the agent's capabilities and permissions; complete lossless recovery and fresh-session behavior in every tool have not been verified.
+
+## License
+
+[0BSD](LICENSE). Use, modify, and redistribute, including commercially, without attribution. Applies to the Relay template, not your private working memory.
