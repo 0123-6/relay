@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="chart-title chart-description">
 <title id="chart-title">Relay · Star history</title>
-<desc id="chart-description">Daily GitHub star totals for 0123-6/relay. 0 stars on 2026-10-30.</desc>
+<desc id="chart-description">Daily GitHub star totals for 0123-6/relay. 1 stars on 2026-10-31.</desc>
 <rect x="1" y="1" width="898" height="468" rx="22" fill="#17212B"/>
 <path d="M24 8 Q7 10 8 29 L9 441 Q8 460 28 460 L874 461 Q892 460 891 440 L891 30 Q892 9 872 9 Z" fill="none" stroke="#34453F" stroke-width="1.4"/>
 <style>text{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive} .small{font-size:13px} .tick{font-size:13px}</style>
 <path d="m42 27 5 11 12 1-9 8 3 12-11-6-10 6 2-12-9-8 13-1Z" fill="none" stroke="#F1CB73" stroke-width="2.6" stroke-linejoin="round"/>
 <text x="74" y="55" font-size="29" font-weight="700" fill="#E7EFEA">Star history</text>
 <text x="34" y="91" class="small" fill="#9AADA8">0123-6/relay</text>
-<text x="852" y="55" text-anchor="end" font-size="32" font-weight="700" fill="#78DBB6">0</text>
+<text x="852" y="55" text-anchor="end" font-size="32" font-weight="700" fill="#78DBB6">1</text>
 <text x="852" y="81" text-anchor="end" class="small" fill="#9AADA8">stars</text>
 <path d="M78 374.00 Q465 373.40 852 374.00" fill="none" stroke="#34453F" stroke-width="1" stroke-dasharray="3 7"/>
 <text x="63" y="378.00" text-anchor="end" class="tick" fill="#9AADA8">0</text>
@@ -20,10 +20,14 @@
 <path d="M78 150.00 Q465 149.40 852 150.00" fill="none" stroke="#34453F" stroke-width="1" stroke-dasharray="3 7"/>
 <text x="63" y="154.00" text-anchor="end" class="tick" fill="#9AADA8">4</text>
 <path d="M78.7 143 Q77 258 78 374 Q461 375.3 856 373.8" fill="none" stroke="#E7EFEA" stroke-width="1.6" stroke-linecap="round"/>
-<circle cx="465.00" cy="374.00" r="3.4" fill="#17212B" stroke="#78DBB6" stroke-width="2"/>
-<circle cx="465.00" cy="374.00" r="5" fill="#78DBB6" stroke="#17212B" stroke-width="2"/>
-<text x="465.00" y="404" text-anchor="middle" class="tick" fill="#9AADA8">2026-10-30</text>
-<text x="465" y="196" text-anchor="middle" font-size="17" fill="#9AADA8">The first point. More days, more story.</text>
+<path d="M78.00 374.00 L852.00 318.00 L852.00 374 L78.00 374 Z" fill="#78DBB6" fill-opacity="0.075"/>
+<path d="M78.00 374.00 L852.00 318.00" fill="none" stroke="#78DBB6" stroke-width="1.2" opacity="0.32" transform="translate(0.65 -0.7)" stroke-linejoin="round"/>
+<path d="M78.00 374.00 L852.00 318.00" fill="none" stroke="#78DBB6" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="78.00" cy="374.00" r="3.4" fill="#17212B" stroke="#78DBB6" stroke-width="2"/>
+<circle cx="852.00" cy="318.00" r="3.4" fill="#17212B" stroke="#78DBB6" stroke-width="2"/>
+<circle cx="852.00" cy="318.00" r="5" fill="#78DBB6" stroke="#17212B" stroke-width="2"/>
+<text x="78.00" y="404" text-anchor="start" class="tick" fill="#9AADA8">2026-10-30</text>
+<text x="852.00" y="404" text-anchor="end" class="tick" fill="#9AADA8">2026-10-31</text>
 <text x="34" y="446" class="small" fill="#9AADA8">Daily totals · UTC</text>
-<text x="852" y="446" text-anchor="end" class="small" fill="#9AADA8">Updated 2026-10-30</text>
+<text x="852" y="446" text-anchor="end" class="small" fill="#9AADA8">Updated 2026-10-31</text>
 </svg>
