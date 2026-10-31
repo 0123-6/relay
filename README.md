@@ -12,6 +12,10 @@ Relay treats agents as mostly stateless executors. Information from people, info
 
 Different sessions and agents use the same persistent information to recover goals, context, working methods, and progress. You do not have to explain everything from scratch. Multiple agents can work from this shared source.
 
+## Background
+
+I started Relay to explore automating my day-to-day development work. I've been using it since around China's National Day holiday in October 2026. It has worked well for me, so I decided to share it.
+
 ## Get started
 
 No service to run, packages to install, or specific model required.
